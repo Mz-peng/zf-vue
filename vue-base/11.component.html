@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <my-button /> 这种是不符合w3c规范的 -->
+      <my-button :info="xx"></my-button>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+      /* 
+        组件类型
+        全局组件、局部组件、函数式组件、异步组件
+        为什么要有组件：复用、方便维护。拆分方便，每个组件间作用域是隔离的，互不干扰。
+        组件间的数据传递
+        组件就是一个自定义的标签，可以代表一些特定的功能，组要封装css html js vue
+        每个组件都用自己的生命周期
+        数据来源：data props
+
+        父组件传递给子组件通过属性传递
+
+      */
+      // 全家组件：在任何组件中都可以使用，而且不需要引用，在组件模板中使用
+      Vue.component("my-button", {
+        props: ["info"],
+        // 组件的数据必须是函数，保证数据不会互相影响，所以通过一个函数返回唯一的对象
+        data() {
+          return { msg: "点击" };
+        },
+        template: `<button>{{msg}} -- {{info}}</button>`,
+      });
+      // 根实例数据必须是对象类型，但是自定义的组件必须是函数类型
+      let vm = new Vue({
+        el: "#app",
+        data: {
+          xx: "切换",
+        },
+      });
+    </script>
+  </body>
+</html>

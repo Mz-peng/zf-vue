@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- mustanche 可以运算 取值 输出 三元 不能写js -->
+    <!-- 只要使用vue的数据就需要先声明 -->
+    <div id="app">{{msg}}</div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+        },
+      });
+
+      // vm.$el 指代的就是当前元素
+      // vm.$nextTick 异步执行 dom操作必备
+      // vm.$watch 监控数据变化
+      // vm.$data 当前数据对象
+      // vm.options 所有的选项
+      // vm.$set
+      // vm.$mount 挂载 单元测试、在内存中挂载vue实例 此时只能用$mount属性
+
+      /**
+       * 可以观察某个数据 发生变化后触发此函数
+       */
+      vm.$watch("msg", function (newValue, oldValue) {
+        console.log(newValue, oldValue);
+      });
+
+      console.log(vm.$el);
+      // dom更新是异步的
+      vm.msg = "xxx";
+      vm.$nextTick(function () {
+        console.log(vm.$el.innerHTML);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <!-- | 管道符 用来过滤的 -->
+    <div id="app">{{xx | toUpper}}</div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <!-- 需要对展示的数据，进行包装，但是不能改变原来的数据 hello -->
+    <!-- 过滤器和指令都是没有this指向的 -->
+    <script>
+      Vue.filter("toUpper", function (value, count = 1) {
+        return value.slice(0, count).toUpperCase() + value.slice(count);
+      });
+      let vm = new Vue({
+        el: "#app",
+        data: {
+          isShow: false,
+          xx: "hello",
+        },
+        filters: {
+          toLower(value, count) {},
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>
