@@ -1,3 +1,3 @@
 module.exports = {
-  runtimeComplier: true,
+  runtimeCompiler: true,
 };
