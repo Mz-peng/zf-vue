@@ -4,6 +4,9 @@
 # 默认会找 App.vue 文件
 # vue serve App.vue
 vue serve
+
+# 如果缺少 vue-template-compiler
+npm i -D vue-template-compiler
 ```
 
 
@@ -30,7 +33,6 @@ yarn add stylus@0.54.8 stylus-loader@3.0.2 -D
   "singleQuote": true
 }
 ```
-
 
 
 
