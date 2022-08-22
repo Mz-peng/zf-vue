@@ -22,6 +22,13 @@ yarn add stylus@0.54.8 stylus-loader@3.0.2 -D
 ```
 
 ## webstorm 配置 prettierrc
+
+```bash
+npm install --save-dev --save-exact prettier
+
+yarn add --dev --exact prettier
+```
+
 ![img.png](img.png)
 
 项目中创建 .prettierrc 文件
