@@ -10,11 +10,25 @@ export default [
       default: Home,
       logo: () => import("./../views/Logo"),
     },
+    beforeEnter(to, from, next) {
+      console.log("to");
+      next();
+    },
+    meta: {
+      // 缓存
+      keepAlive: true,
+    },
   },
   {
     path: "/profile",
     name: "profile",
     component: Profile,
+    /**
+     * 校验标识
+     */
+    meta: {
+      needLogin: true,
+    },
   },
   {
     path: "/user",
@@ -33,6 +47,10 @@ export default [
       {
         path: "list",
         component: () => import("./../views/UserList"),
+      },
+      {
+        path: "detail/:id",
+        component: () => import("./../views/UserDetail"),
       },
     ],
   },

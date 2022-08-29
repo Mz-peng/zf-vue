@@ -23,7 +23,14 @@
       </el-row>
     </el-header>
     <el-main>
-      <router-view></router-view>
+      <transition name="fade" mode="out-in">
+        <keep-alive>
+          <router-view v-if="$route.meta.keepAlive"></router-view>
+        </keep-alive>
+      </transition>
+      <transition name="fade" mode="out-in">
+        <router-view v-if="!$route.meta.keepAlive"></router-view>
+      </transition>
       <router-view name="logo"></router-view>
     </el-main>
     <el-footer>尾巴</el-footer>
@@ -44,5 +51,14 @@
 .el-header,
 .el-footer {
   background: #2a2a2a;
+}
+
+/*transition 动画样式*/
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

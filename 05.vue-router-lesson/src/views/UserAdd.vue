@@ -3,10 +3,7 @@
     <h2>添加用户</h2>
     <el-form :model="ruleForm" :rules="rules" ref="form">
       <el-form-item label="用户名" prop="username">
-        <el-input
-          v-model="ruleForm.username"
-          placeholder="请输入用户名"
-        ></el-input>
+        <el-input v-model="ruleForm.username" placeholder="请输入用户名"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submit">提交</el-button>
@@ -56,6 +53,10 @@ export default {
       this.$refs.form.validate((valid) => {
         if (valid) {
           this.flag = true;
+          let lists = JSON.parse(localStorage.getItem("lists")) || [];
+          lists.push({ id: Math.random(), username: this.ruleForm.username });
+          console.log("---", lists);
+          localStorage.setItem("lists", JSON.stringify(lists));
           this.$router.push("/user/list");
         }
       });
