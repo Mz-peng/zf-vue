@@ -20,7 +20,7 @@ app.get('/getRole', (req, res) => {
             {pid: 4, path: '/cart/cart-list/lottery', name: '彩票', id: 5, auth: 'lottery'},
             {pid: 4, path: '/cart/cart-list/product', name: '商品', id: 6, auth: 'product'},
             {pid: -1, path: '/shop', name: '商店', id: 2, auth: 'shop'},
-            {pid: -1, path: '/profile', name: '个人中心', id: 3, auth: 'store'},
+            {pid: -1, path: '/profile', name: '个人中心', id: 3, auth: 'profile'},
         ]
     })
 })
