@@ -1,0 +1,20 @@
+{
+  "name": "11.vue-source",
+  "version": "1.0.0",
+  "description": "- vue中如何实现数据劫持\r - 数组的劫持\r - vue中的观察者模式\r - 计算属性和watch的区别(原理)\r - vue中数据的批量更新\r - nextTick原理\r - 什么是虚拟dom及虚拟dom的作用\r - vue中的diff实现",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.0"
+  }
+}
