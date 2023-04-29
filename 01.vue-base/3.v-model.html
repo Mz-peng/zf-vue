@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- v-model 就是把value值绑定给元素 并且添加input事件 -->
+      <!-- v-bind 只是绑定属性 -->
+      <!-- v-model 可以放在任何地方 -->
+      <!-- 
+        如何自定义指令
+       -->
+      <input type="text" :value="msg" @input="change($event)" />
+      <input type="text" v-model="msg" v-model="true" />
+      {{msg}}
+      <br />
+
+      <!-- 复选框有两个值 true / false -->
+      <input type="checkbox" v-model="check" /> {{check}}
+      <br />
+
+      <!-- checkbox 需要给value的值 多个的时候 -->
+      <input type="checkbox" v-model="checks" value="游泳" />
+      <input type="checkbox" v-model="checks" value="健身" />
+      <input type="checkbox" v-model="checks" value="吃饭" />
+      {{checks}}
+      <br />
+
+      性别： 男<input type="radio" v-model="gender" value="男" /> 女<input
+        type="radio"
+        v-model="gender"
+        value="女"
+      />
+      <br />
+
+      <!-- select -->
+      <select v-model="select" multiple>
+        <option value="0" disabled>请选择</option>
+        <option v-for="o in options" :value="o.id" :key="o.id">
+          {{o.title}}
+        </option>
+      </select>
+      {{select}}
+      <br />
+
+      <!-- textarea -->
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+          check: true,
+          checks: [],
+          gender: "",
+          select: [0],
+          options: [
+            { title: "数学", id: 1 },
+            { title: "语文", id: 2 },
+            { title: "英语", id: 3 },
+          ],
+        },
+        methods: {
+          change(e) {
+            this.msg = e.target.value;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

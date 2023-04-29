@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">{{msg}}</div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+        },
+        /* 钩子函数 在new Vue的时候，会最先调用，这个钩子，一般不会做太多功能，在底层中可以做一些链 */
+        beforeCreate() {
+          // 会初始化自己的生命周期，事件方法 $on $emit
+          console.log(this);
+        },
+        /* 
+          响应式的数据变化观察 
+          无法获取真实dom元素
+        */
+        created() {},
+        /* 
+          这个方法基本用不到
+          检查有没有template属性，如果有，会把这个template渲染成一个render函数
+        */
+        beforeMount() {
+          console.log("beforeMount");
+        },
+        /* 
+          created和mounted的区别
+          mounted可以获取真实的元素 如 this.$el
+          一般在mounted中发送ajax请求，因为mounted可以拿到实例
+        */
+        mounted() {
+          console.log("挂载后");
+          console.log(this.$el);
+          this.msg = "hi";
+          this.$nextTick(() => {
+            // 只要操作dom，就增加$nextTick
+            log.console(this.$el.innerHTML);
+          });
+        },
+        /* 
+          更新之前执行
+        */
+        beforUpdate() {},
+        /* 
+          更新之后执行
+          不能修改值了
+          这个钩子不用更改数据
+          可以使用wtach替换
+        */
+        updated() {
+          console.log("更新之后");
+        },
+        /* 
+          销毁前
+          一般情况下，用来清除定时器，移除绑定的方法事件
+          当组件销毁的时候触发，路由切换的时候，手动销毁vm.$destroy()
+        */
+        beforeDestroy() {
+          console.log("销毁前");
+        },
+        /* 销毁后 */
+        destroyed() {
+          console.log("销毁后");
+        },
+      });
+    </script>
+  </body>
+</html>

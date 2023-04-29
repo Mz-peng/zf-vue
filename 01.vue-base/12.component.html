@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 父传子 -->
+    <div id="app">
+      <my-button :info="xx" a="1" b="2"></my-button>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+      // 先走子组件，再走父组件
+      let vm = new Vue({
+        el: "#app",
+        data: {
+          xx: "切换",
+        },
+        components: {
+          "my-button": {
+            // 不在dom上显示传递的属性
+            inheritAttrs: false,
+            props: ["info"],
+            data() {
+              return { msg: "点击" };
+            },
+            mounted() {
+              // this.$attrs 表示所有没有被用的属性，批量传递属性
+              console.log(this.$attrs);
+            },
+            template: `<button>{{msg}} -- {{info}}<my v-bind="$attrs"></my></button>`,
+            components: {
+              my: {
+                props: ["a", "b"],
+                template: `<div>试试啊 {{a}}  {{b}} </div>`,
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

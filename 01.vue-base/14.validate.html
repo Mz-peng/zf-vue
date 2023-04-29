@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <my-button msg="点击" username="zhangsan"></my-button>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+      Vue.component("my-button", {
+        props: {
+          msg: {
+            // 组件传参校验
+            type: String,
+            // 必填
+            required: true,
+          },
+          age: {
+            type: Number,
+            default: 100,
+          },
+          // 数组和对象默认值通过函数返回
+          arr: {
+            type: Array,
+            default: () => [2, 3, 5],
+          },
+          username: {
+            type: String,
+            // 自定义校验器
+            valedate(val) {
+              return val.length == 7;
+            },
+          },
+        },
+        template: `<div><button>{{msg}} {{age}} {{arr}}</button></div>`,
+      });
+      let vm = new Vue({
+        el: "#app",
+      });
+    </script>
+  </body>
+</html>

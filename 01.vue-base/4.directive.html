@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .content {
+        width: 100px;
+        height: 100px;
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 指令的作用 就是操作dom 有特定功能 -->
+    <div id="app">
+      <div v-color="'red'">xxx</div>
+
+      <!-- popover -->
+      <div v-click-outside="hide">
+        <input type="text" @focus="show" />
+        <div class="content" v-if="isShow">
+          content
+          <button>点击切换</button>
+        </div>
+      </div>
+
+      <input type="text" v-focus="xx" />
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+      // 全局指令 不需要每个组件都引用 只需要全局引用下即可
+      Vue.directive("color", function (el, bingdings, vnode) {
+        el.style.border = `1px solid ${bingdings.value}`;
+        console.log(el, bingdings, vnode);
+      });
+      let vm = new Vue({
+        el: "#app",
+        // 局部指令
+        directives: {
+          /**
+           * 默认调用的方法是bind和update
+           */
+          focus: {
+            bind(el) {
+              console.log("el绑定到页面上执行");
+            },
+            inserted(el) {
+              console.log("这个元素插入到页面中，执行的钩子");
+              el.focus();
+            },
+            // 所有的数据发送变化，都会重新执行
+            update(el) {
+              console.log("依赖的数据发生变化，会触发此方法");
+              console.log(el);
+            },
+          },
+          "click-outside"(el, bingdings, vnode) {
+            // 绑定给document 捕获到事件发生在谁的身上
+            document.addEventListener("click", (e) => {
+              console.log(el.contains(e.target));
+              // 如果当前元素内的不管的，点击外面就隐藏content标签
+              if (!el.contains(e.target)) {
+                console.log("失去焦点");
+                vnode.context[bingdings.expression]();
+              }
+            });
+          },
+        },
+        data: {
+          isShow: false,
+          xx: "hello",
+        },
+        methods: {
+          show() {
+            this.isShow = true;
+          },
+          hide() {
+            this.isShow = false;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

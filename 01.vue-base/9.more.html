@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./node_modules/animate.css/animate.css" />
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="filter" />
+      <transition-group
+        enter-active-class="animate__bounceIn"
+        leave-active-class="animate__bounceOut"
+      >
+        <div
+          class="box animated"
+          v-for="(d, index) in computedData"
+          :key="d.title"
+          v-if="isShow"
+        >
+          {{d.title}}
+        </div>
+      </transition-group>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script src="./node_modules/velocity-animate/velocity.js"></script>
+    <script>
+      let vm = new Vue({
+        el: "#app",
+        data: {
+          isShow: true,
+          filter: "",
+          dataList: [
+            { title: "标题1" },
+            { title: "标题2" },
+            { title: "标题3" },
+            { title: "标题4" },
+          ],
+        },
+        computed: {
+          computedData() {
+            return this.dataList.filter((item) => {
+              // item 当前循环的每一项 看一下是否包含filter属性 如果包含则留下
+              return item.title.includes(this.filter);
+            });
+          },
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>

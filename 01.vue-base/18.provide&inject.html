@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .title {
+      border: 1px solid red;
+      width: 100px;
+      line-height: 35px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <body>
+    <div id="app">
+      <parent>
+        <child></child>
+      </parent>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+      Vue.component("parent", {
+        // 在跟组件中注入数据
+        provide: {
+          msg: 'hello'
+        },
+        template: `<div><slot></slot></div>`
+      })
+      Vue.component("child", {
+        // 在子组件中消费数据
+        inject: ["msg"],
+        template: `<div>{{msg}}</div>`
+      })
+      let vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+        },
+      });
+    </script>
+</body>
+</html>
