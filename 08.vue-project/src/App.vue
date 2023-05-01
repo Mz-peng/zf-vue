@@ -1,22 +1,45 @@
 <template>
-  <div id="app">
-      <router-view></router-view>
-  </div>
+    <div id="app">
+        <!-- el-container 会检测内部是否有 el-header 和 el-footer -->
+        <el-container>
+            <el-header>
+                <page-header />
+            </el-header>
+            <el-main>
+                <router-view></router-view>
+            </el-main>
+            <el-footer>
+                <page-footer />
+            </el-footer>
+        </el-container>
+
+    </div>
 </template>
 
 <script>
+import PageFooter from "@/component/PageFooter.vue";
+import PageHeader from "@/component/PageHeader.vue";
+
 export default {
-  name: "app",
+    name: "app",
+    components: {
+        PageFooter, PageHeader
+    }
 };
 </script>
 
 <style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+    margin: 0;
+    padding: 0;
+}
+.el-header {
+    background-color: #333333;
+}
+.el-footer {
+    background-color: #333333;
+}
+.el-main {
+    min-height: calc(100vh - 120px);
 }
 </style>

@@ -1,4 +1,9 @@
 import Vue from 'vue'
-import { Button } from 'element-ui'
+import {Button, Header, Main, Footer, Container, Row, Col, Menu, MenuItem, Submenu} from 'element-ui'
 
-Vue.use(Button)
+const components = {Button, Header, Main, Footer, Container, Row, Col, Menu, MenuItem, Submenu}
+Object.values(components).forEach((component) => {
+    console.log('element plugin', component)
+    Vue.use(component)
+})
+
