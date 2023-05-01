@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <!-- el-container 会检测内部是否有 el-header 和 el-footer -->
-        <el-container>
+        <el-container style="min-width: 960px">
             <el-header>
                 <page-header />
             </el-header>

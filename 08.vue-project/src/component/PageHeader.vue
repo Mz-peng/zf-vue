@@ -1,7 +1,7 @@
 <template>
     <el-row class="header-row">
         <el-col :span="18">
-            <img src="" class="logo"/>
+            <img src="../assets/logo.png" class="logo"/>
             <el-menu class="menu" mode="horizontal" background-color="#333333" text-color="#FFFFFF"
                      active-text-color="#FFFFFF" :router="true">
                 <el-menu-item index="/">首页</el-menu-item>
