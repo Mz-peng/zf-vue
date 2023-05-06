@@ -19,11 +19,14 @@ class HttpRequest {
         instance.interceptors.response.use(res => {
             if (res.status === 200) {
                 // 统一处理错误状态码
-                if (res.data.code === 0) {
+                if (res.data.code === '00200') {
                     // 服务器返回的结果都会放到data中
                     return Promise.resolve(res.data)
+                } else if (res.data.code === '00500') {
+                    // 业务异常，后端返回状态码 00500
+                    return Promise.reject(res.data.msg)
                 } else {
-                    return Promise.reject(res.data.data);
+                    return Promise.reject(res.data.msg);
                 }
             } else {
                 // 我的后端实现的话，如果失败了会在返回的结果中增加一个data字段(失败原因)
