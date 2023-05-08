@@ -58,11 +58,11 @@ class HttpRequest {
         return instance(opts)
     }
 
-    get(url, config) {
+    get(url, params) {
         return this.request({
             method: 'get',
             url,
-            config  // 参数可以直接展开
+            params: params  // 参数可以直接展开
         })
     }
 

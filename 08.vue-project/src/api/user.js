@@ -7,3 +7,11 @@ import config from "@/api/config/user";
  * @returns {*}
  */
 export const reg = (data) => axios.post(config.reg, data);
+
+
+/**
+ * 登录
+ * @param data
+ * @returns {*}
+ */
+export const login = (data) => axios.post(config.login, data);

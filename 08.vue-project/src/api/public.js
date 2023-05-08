@@ -1,11 +1,21 @@
 import config from "@/api/config/public";
 import axios from "@/utils/request";
+import { getLocal } from "@/utils/local"
 
 /**
  * 获取轮播图
  * @returns {*}
  */
 export const getSlider = () => axios.get(config.getSlider);
+
+/**
+ * 获取验证码
+ * 创建一个唯一的用户标识 和 验证码对应
+ * @returns {*}
+ */
+export const getCaptcha = () => axios.get(config.getCaptcha, {
+    uid: getLocal("uuid")
+});
 
 /**
  * 接口调用
