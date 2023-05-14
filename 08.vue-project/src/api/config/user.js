@@ -1,4 +1,4 @@
 export default {
-    reg: '/user/reg',
-    login: '/user/login',
-}
+    reg: "/user/reg",
+    login: "/user/login",
+};
