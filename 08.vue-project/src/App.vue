@@ -12,19 +12,19 @@
                 <page-footer />
             </el-footer>
         </el-container>
-
     </div>
 </template>
 
 <script>
-import PageFooter from "@/component/PageFooter.vue";
-import PageHeader from "@/component/PageHeader.vue";
+import PageFooter from "@/components/PageFooter.vue";
+import PageHeader from "@/components/PageHeader.vue";
 
 export default {
     name: "app",
     components: {
-        PageFooter, PageHeader
-    }
+        PageFooter,
+        PageHeader,
+    },
 };
 </script>
 

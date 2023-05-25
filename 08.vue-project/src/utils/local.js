@@ -4,10 +4,10 @@
  * @param value
  */
 export const setLocal = (key, value) => {
-  if (typeof value === "object") {
-    value = JSON.stringify(value);
-  }
-  localStorage.setItem(key, value);
+    if (typeof value === "object") {
+        value = JSON.stringify(value);
+    }
+    localStorage.setItem(key, value);
 };
 
 /**
@@ -15,9 +15,10 @@ export const setLocal = (key, value) => {
  * @param key
  */
 export const getLocal = (key) => {
-  if (key.includes("[") || key.includes("{")) {
-    return JSON.parse(localStorage.getItem(key));
-  } else {
-    return localStorage.getItem(key);
-  }
+    let value = localStorage.getItem(key) || "";
+    if (value.includes("[") || value.includes("{")) {
+        return JSON.parse(localStorage.getItem(value));
+    } else {
+        return localStorage.getItem(key);
+    }
 };
