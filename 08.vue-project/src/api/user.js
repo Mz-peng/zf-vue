@@ -15,3 +15,9 @@ export const reg = (data) => axios.post(config.reg, data);
  * @returns {*}
  */
 export const login = (data) => axios.post(config.login, data);
+
+/**
+ *校验用户是否登录，如果登录过，获取最新用户信息，并更新
+ * @returns {*}
+ */
+export const validate = () => axios.post(config.validate);

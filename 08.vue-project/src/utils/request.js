@@ -2,6 +2,8 @@
 import config from "@/config";
 import axios from "axios";
 import { setLocal, getLocal } from "@/utils/local";
+import { createNamespacedHelpers } from "vuex";
+let { mapActions } = createNamespacedHelpers("user");
 
 class HttpRequest {
     constructor() {
@@ -14,7 +16,9 @@ class HttpRequest {
     setInterceptors(instance) {
         instance.interceptors.request.use((config) => {
             // 一般增加一些token属性
-            config.headers.setAuthorization("Bearer " + getLocal("token"));
+            if (getLocal("token") !== null) {
+                config.headers.setAuthorization("Bearer " + getLocal("token"));
+            }
             return config;
         });
 
@@ -27,6 +31,10 @@ class HttpRequest {
                         return Promise.resolve(res.data);
                     } else if (res.data.code === "00500") {
                         // 业务异常，后端返回状态码 00500
+                        console.log("05");
+                        return Promise.reject(res.data.msg);
+                    } else if (res.data.code === "00401") {
+                        // 无权限访问 00401
                         return Promise.reject(res.data.msg);
                     } else {
                         return Promise.reject(res.data.msg);

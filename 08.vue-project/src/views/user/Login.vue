@@ -133,6 +133,7 @@ export default {
             this.$refs[formName].validate(async (valid) => {
                 if (valid) {
                     try {
+                        this.uid = getLocal("uuid");
                         await this[types.USER_LOGIN]({ ...this.ruleForm, uuid: this.uid });
                         this.$message({
                             type: "success",
