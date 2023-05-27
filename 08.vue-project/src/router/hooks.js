@@ -8,9 +8,33 @@ import * as types from "@/store/action-types";
  * @param next
  */
 const loginPermission = async function (to, from, next) {
-    console.log("loginPermission", this);
-    await store.dispatch(`user/${types.USER_VALIDATE}`);
-    next();
+    // 验证是否登录过，如果登录过，刷新用户的登录信息和token
+    let loginStatus = await store.dispatch(`user/${types.USER_VALIDATE}`);
+    // 跳转该路由是否需要登录 设置在路由的 meta 属性中
+    let needLogin = to.matched.some((item) => item.meta.needLogin);
+
+    if (store.state.user.hasPermission) {
+        // 已登录
+        if (to.path === "/login") {
+            // 已登录还跳转登录页面，让他去首页
+            next("/");
+        } else {
+            next();
+        }
+    } else {
+        // 未登录 判断路由是否需要登录
+        if (needLogin) {
+            if (loginStatus) {
+                // 需要登录，本次登录过了，放行
+                next();
+            } else {
+                next("/login");
+            }
+        } else {
+            // 没登录，也不需要权限
+            next();
+        }
+    }
 };
 
 // 权限校验认证

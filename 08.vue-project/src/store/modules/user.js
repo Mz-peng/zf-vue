@@ -21,31 +21,35 @@ export default {
         },
     },
     actions: {
-        async [types.USER_LOGIN]({ commit }, payload) {
+        async [types.SET_USER_INFO]({ commit }, { payload, permission }) {
+            commit(types.SET_USER_INFO, payload);
+            commit(types.SET_PERMISSION, permission);
+        },
+        async [types.USER_LOGIN]({ commit, dispatch }, payload) {
             try {
                 let result = await user.login(payload);
                 console.log("user_login", result);
-                commit(types.SET_USER_INFO, result.data);
-                commit(types.SET_PERMISSION, true);
+                dispatch(types.SET_USER_INFO, { payload: result.data, permission: true });
             } catch (e) {
                 return Promise.resolve(e);
             }
         },
-        async [types.USER_VALIDATE]({ commit }) {
+        async [types.USER_VALIDATE]({ dispatch }) {
             // 没token就用发请求
             if (!getLocal("token")) {
                 return false;
             }
             try {
                 let result = await user.validate();
-                commit(types.SET_USER_INFO, result.data);
-                commit(types.SET_PERMISSION, true);
+                dispatch(types.SET_USER_INFO, { payload: result.data, permission: true });
                 return true;
             } catch (e) {
-                commit(types.SET_USER_INFO, {});
-                commit(types.SET_PERMISSION, false);
+                dispatch(types.SET_USER_INFO, { payload: {}, permission: false });
                 return false;
             }
+        },
+        async [types.USER_LOGOUT]({ dispatch }) {
+            dispatch(types.SET_USER_INFO, { payload: {}, permission: false });
         },
     },
 };
