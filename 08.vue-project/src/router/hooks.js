@@ -37,8 +37,23 @@ const loginPermission = async function (to, from, next) {
     }
 };
 
-// 权限校验认证
+// 权限校验动态添加
+const menuPermission = async function (to, from, next) {
+    if (store.state.user.hasPermission) {
+        // 添加路由 需要判断是否添加过路由了
+        if (!store.state.user.menuPermission) {
+            await store.dispatch(`user/${types.ADD_ROUTE}`);
+            // replaceState
+            next({ ...to, replace: true }); // 进入页面时 404
+        } else {
+            next();
+        }
+    } else {
+        next();
+    }
+};
 
 export default {
     loginPermission,
+    menuPermission,
 };

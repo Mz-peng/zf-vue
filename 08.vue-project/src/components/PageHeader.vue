@@ -34,6 +34,9 @@
                     <template v-else>
                         <el-submenu index="1">
                             <template slot="title">{{ userInfo.username }}</template>
+                            <el-menu-item index="manager" class="manager">
+                                <router-link to="/manager">管理后台</router-link>
+                            </el-menu-item>
                             <el-menu-item index="logout" @click="logout">退出登录</el-menu-item>
                         </el-submenu>
                     </template>
@@ -44,6 +47,7 @@
 </template>
 <script>
 import { createNamespacedHelpers } from "vuex";
+
 let { mapState, mapActions } = createNamespacedHelpers("user");
 import * as types from "@/store/action-types";
 
@@ -77,9 +81,16 @@ export default {
 
     .nav-right {
         float: right;
+
         a {
             text-decoration: none;
         }
+    }
+}
+.manager {
+    a {
+        color: #ffffff !important;
+        text-decoration: none !important;
     }
 }
 </style>
