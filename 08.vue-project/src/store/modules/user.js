@@ -90,8 +90,9 @@ export default {
                 let managerRoute = router.options.routes.find((item) => item.path === "/manager");
                 console.log("router", router.options.routes);
                 // 添加儿子路由
-                managerRoute.childrens = routes;
+                managerRoute.children = routes;
                 router.addRoute(managerRoute);
+                console.log("router after", router.options.routes);
                 commit(types.SET_MENU_PERMISSION, true);
             }
         },

@@ -1,3 +1,3 @@
 <template>
-    <div>ArticleManager</div>
+    <div>文章管理</div>
 </template>

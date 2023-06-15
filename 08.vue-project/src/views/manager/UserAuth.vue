@@ -1,3 +1,3 @@
 <template>
-    <div>userAuth</div>
+    <div>用户权限</div>
 </template>

@@ -1,3 +1,3 @@
 <template>
-    <div>userStatistics</div>
+    <div>用户统计</div>
 </template>

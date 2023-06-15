@@ -11,8 +11,4 @@ export default [
         path: "/forget",
         component: () => import(/*webpackChunkName:'forget'*/ "@/views/user/Forget.vue"),
     },
-    {
-        path: "/manager",
-        component: () => import(/*webpackChunkName:'manager'*/ "@/views/manager/index.vue"),
-    },
 ];

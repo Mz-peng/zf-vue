@@ -1,3 +1,3 @@
 <template>
-    <div>InfoPublish</div>
+    <div>信息发布</div>
 </template>
