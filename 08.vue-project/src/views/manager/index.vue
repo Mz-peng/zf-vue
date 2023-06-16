@@ -3,7 +3,7 @@
         <el-aside width="200px">
             <manager-menu></manager-menu>
         </el-aside>
-        <el-main>
+        <el-main class="manager-main">
             <router-view></router-view>
         </el-main>
     </el-container>
@@ -24,5 +24,9 @@ export default {
 .el-aside {
     background: #333;
     opacity: 0.8;
+}
+
+.manager-main {
+    margin: 20px;
 }
 </style>

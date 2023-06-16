@@ -22,3 +22,8 @@ export const SET_MENU_PERMISSION = "SET_MENU_PERMISSION";
 
 // 添加路由
 export const ADD_ROUTE = "ADD_ROUTE";
+
+// 创建WebSocket
+export const CREATE_WEBSOCKET = "CREATE_WEBSOCKET";
+// 保存发送的消息
+export const SET_MESSAGE = "SET_MESSAGE";

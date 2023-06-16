@@ -139,6 +139,7 @@ export default {
                             type: "success",
                             message: "登录成功!",
                         });
+                        await this.$router.push({ name: "home" });
                     } catch (e) {
                         this.$message({
                             type: "error",

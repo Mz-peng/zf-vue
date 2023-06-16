@@ -1,5 +1,6 @@
 import store from "@/store";
 import * as types from "@/store/action-types";
+import router from "@/router/index";
 
 /**
  * 登录权限校验
@@ -53,7 +54,25 @@ const menuPermission = async function (to, from, next) {
     }
 };
 
+/**
+ * 登录后，判断是否需要创建websocket
+ * @param to
+ * @param from
+ * @param next
+ * @returns {Promise<void>}
+ */
+export const createWebSocket = async function (to, from, next) {
+    // 如果登录了，但是没有创建websocket
+    if (store.state.user.hasPermission && !store.state.ws) {
+        await store.dispatch(`${types.CREATE_WEBSOCKET}`);
+        next();
+    } else {
+        next();
+    }
+};
+
 export default {
     loginPermission,
     menuPermission,
+    createWebSocket,
 };

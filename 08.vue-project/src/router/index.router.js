@@ -1,6 +1,7 @@
 export default [
     {
         path: "/",
+        name: "home",
         component: () => import(/*webpackChunkName:'home'*/ "@/views/Home.vue"),
     },
     {
@@ -9,6 +10,7 @@ export default [
     },
     {
         path: "/manager",
+        name: "manager",
         component: () => import(/*webpackChunkName:'manager'*/ "@/views/manager/index.vue"),
         meta: {
             needLogin: true,
